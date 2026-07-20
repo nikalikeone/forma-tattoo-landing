@@ -1,0 +1,197 @@
+---
+const steps = [
+  {
+    number: '01',
+    title: 'Заявка',
+    description:
+      'Расскажи об идее, размере и месте нанесения. Можно приложить референсы.',
+  },
+  {
+    number: '02',
+    title: 'Обсуждение',
+    description:
+      'Уточним детали, формат работы, ориентировочную стоимость и возможные даты.',
+  },
+  {
+    number: '03',
+    title: 'Эскиз',
+    description:
+      'Композиция разрабатывается с учётом идеи и расположения татуировки.',
+  },
+  {
+    number: '04',
+    title: 'Сеанс',
+    description:
+      'Перед началом ещё раз проверяем размер, расположение и детали.',
+  },
+  {
+    number: '05',
+    title: 'Уход',
+    description:
+      'После сеанса ты получаешь рекомендации и можешь задать вопросы.',
+  },
+] as const;
+---
+
+<section class="process" id="process" aria-labelledby="process-title">
+  <div class="container">
+    <header class="process__header">
+      <p class="eyebrow">04 / Process</p>
+      <h2 id="process-title">Понятно<br />на каждом этапе</h2>
+      <p>
+        Никаких неожиданных решений в день сеанса. Сначала обсуждаем задачу,
+        затем переходим к работе.
+      </p>
+    </header>
+
+    <ol class="process__timeline">
+      {
+        steps.map((step) => (
+          <li>
+            <span class="process__number">{step.number}</span>
+            <div class="process__line" aria-hidden="true">
+              <span />
+            </div>
+            <h3>{step.title}</h3>
+            <p>{step.description}</p>
+          </li>
+        ))
+      }
+    </ol>
+
+    <p class="process__note">
+      Точные сроки, правила правок и порядок предоплаты добавляются после
+      согласования с мастером.
+    </p>
+  </div>
+</section>
+
+<style>
+  .process {
+    padding-block: clamp(6rem, 12vw, 12rem);
+    background: var(--color-background);
+  }
+
+  .process__header {
+    display: grid;
+    grid-template-columns: 2fr 7fr 3fr;
+    align-items: end;
+    gap: var(--space-8);
+    margin-bottom: clamp(4rem, 8vw, 8rem);
+  }
+
+  .process__header h2 {
+    font-size: clamp(2.8rem, 7vw, 7rem);
+    letter-spacing: -0.06em;
+    text-transform: uppercase;
+  }
+
+  .process__header > p:last-child {
+    color: var(--color-text-muted);
+  }
+
+  .process__timeline {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .process__timeline li {
+    min-width: 0;
+    padding-inline-end: clamp(1rem, 2.5vw, 2.5rem);
+  }
+
+  .process__number {
+    color: var(--color-accent-soft);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+  }
+
+  .process__line {
+    position: relative;
+    height: 1px;
+    margin-block: var(--space-6) var(--space-8);
+    background: var(--color-border);
+  }
+
+  .process__line span {
+    position: absolute;
+    width: 0.65rem;
+    aspect-ratio: 1;
+    inset: 50% auto auto 0;
+    border: 2px solid var(--color-accent-soft);
+    border-radius: 50%;
+    background: var(--color-background);
+    transform: translateY(-50%);
+  }
+
+  .process__timeline h3 {
+    margin-bottom: var(--space-4);
+    font-size: clamp(1rem, 1.5vw, 1.35rem);
+    text-transform: uppercase;
+  }
+
+  .process__timeline p {
+    color: var(--color-text-muted);
+    font-size: 0.92rem;
+  }
+
+  .process__note {
+    max-width: 42rem;
+    margin-top: clamp(4rem, 8vw, 8rem);
+    margin-inline-start: auto;
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    font-size: 0.74rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 52rem) {
+    .process__header {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+
+    .process__header > p:last-child {
+      max-width: 32rem;
+    }
+
+    .process__timeline {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-12) var(--space-8);
+    }
+  }
+
+  @media (max-width: 36rem) {
+    .process__timeline {
+      grid-template-columns: 1fr;
+    }
+
+    .process__timeline li {
+      display: grid;
+      grid-template-columns: 2rem 1fr;
+      padding-inline-end: 0;
+    }
+
+    .process__line {
+      grid-row: 1 / span 3;
+      width: 1px;
+      height: 100%;
+      margin: 0 0 0 0.3rem;
+    }
+
+    .process__line span {
+      inset: 0 auto auto 50%;
+      transform: translate(-50%, 0);
+    }
+
+    .process__timeline h3,
+    .process__timeline p {
+      grid-column: 2;
+    }
+  }
+</style>

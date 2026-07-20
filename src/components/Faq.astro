@@ -1,0 +1,188 @@
+---
+const questions = [
+  {
+    question: 'Сколько стоит татуировка?',
+    answer:
+      'Стоимость зависит от размера, детализации, расположения и продолжительности работы. Ориентир можно определить после обсуждения идеи.',
+  },
+  {
+    question: 'Можно прийти со своим эскизом?',
+    answer:
+      'Да, можно принести собственный рисунок или референсы. Они станут основой для обсуждения и разработки подходящего решения.',
+  },
+  {
+    question: 'Как подготовиться к сеансу?',
+    answer:
+      'После записи мастер отправит рекомендации по подготовке. О важных особенностях здоровья и возникающих вопросах следует сообщить заранее.',
+  },
+  {
+    question: 'Насколько это больно?',
+    answer:
+      'Ощущения индивидуальны и зависят от расположения, продолжительности сеанса и чувствительности человека.',
+  },
+  {
+    question: 'Можно перекрыть старую татуировку?',
+    answer:
+      'Возможность перекрытия зависит от размера, плотности, цвета и состояния существующей работы. Для первичной оценки потребуется фотография.',
+  },
+  {
+    question: 'Как ухаживать после сеанса?',
+    answer:
+      'Мастер предоставляет рекомендации после процедуры. При необычной реакции или ухудшении самочувствия необходимо обращаться к медицинскому специалисту.',
+  },
+] as const;
+---
+
+<section class="faq" id="faq" aria-labelledby="faq-title">
+  <div class="faq__inner container">
+    <header class="faq__header">
+      <p class="eyebrow">06 / FAQ</p>
+      <h2 id="faq-title">Ответы<br />до первой<br />встречи</h2>
+      <p>Если нужного вопроса нет в списке, его можно задать в заявке.</p>
+    </header>
+
+    <div class="faq__list">
+      {
+        questions.map((item, index) => (
+          <details>
+            <summary>
+              <span>0{index + 1}</span>
+              <strong>{item.question}</strong>
+              <i aria-hidden="true" />
+            </summary>
+            <div class="faq__answer">
+              <p>{item.answer}</p>
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq {
+    padding-block: clamp(6rem, 11vw, 11rem);
+    background: var(--color-text);
+    color: var(--color-background);
+  }
+
+  .faq__inner {
+    display: grid;
+    grid-template-columns: minmax(16rem, 4fr) minmax(0, 8fr);
+    align-items: start;
+    gap: clamp(3rem, 8vw, 9rem);
+  }
+
+  .faq__header {
+    position: sticky;
+    top: var(--space-8);
+  }
+
+  .faq .eyebrow,
+  .faq__header > p:last-child {
+    color: color-mix(in srgb, var(--color-background) 62%, transparent);
+  }
+
+  h2 {
+    margin-block: var(--space-6) var(--space-8);
+    font-size: clamp(2.8rem, 6vw, 6rem);
+    letter-spacing: -0.06em;
+    text-transform: uppercase;
+  }
+
+  .faq__header > p:last-child {
+    max-width: 24rem;
+  }
+
+  .faq__list {
+    border-bottom: 1px solid
+      color-mix(in srgb, var(--color-background) 22%, transparent);
+  }
+
+  details {
+    border-top: 1px solid
+      color-mix(in srgb, var(--color-background) 22%, transparent);
+  }
+
+  summary {
+    display: grid;
+    grid-template-columns: 3rem 1fr 2rem;
+    align-items: center;
+    gap: var(--space-4);
+    padding-block: clamp(1.4rem, 3vw, 2.2rem);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary span {
+    color: var(--color-accent);
+    font-size: 0.68rem;
+  }
+
+  summary strong {
+    font-family: var(--font-display);
+    font-size: clamp(0.9rem, 1.6vw, 1.3rem);
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  summary i {
+    position: relative;
+    width: 1.2rem;
+    aspect-ratio: 1;
+    justify-self: end;
+  }
+
+  summary i::before,
+  summary i::after {
+    position: absolute;
+    content: '';
+    inset: 50% 0 auto;
+    height: 1px;
+    background: currentColor;
+    transition: transform 180ms ease;
+  }
+
+  summary i::after {
+    transform: rotate(90deg);
+  }
+
+  details[open] summary i::after {
+    transform: rotate(0);
+  }
+
+  .faq__answer {
+    display: grid;
+    grid-template-columns: 3rem 1fr 2rem;
+    gap: var(--space-4);
+    padding-bottom: var(--space-8);
+  }
+
+  .faq__answer p {
+    grid-column: 2;
+    max-width: 42rem;
+    color: color-mix(in srgb, var(--color-background) 68%, transparent);
+  }
+
+  @media (max-width: 52rem) {
+    .faq__inner {
+      grid-template-columns: 1fr;
+    }
+
+    .faq__header {
+      position: static;
+    }
+  }
+
+  @media (max-width: 36rem) {
+    summary,
+    .faq__answer {
+      grid-template-columns: 2rem 1fr 1.5rem;
+    }
+  }
+</style>

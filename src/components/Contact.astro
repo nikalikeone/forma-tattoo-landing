@@ -1,0 +1,336 @@
+<section class="contact" id="contact" aria-labelledby="contact-title">
+  <div class="container">
+    <header class="contact__header">
+      <p class="eyebrow">07 / Contact</p>
+      <h2 id="contact-title">
+        У тебя есть идея.<br />Давай придадим ей <em>форму.</em>
+      </h2>
+      <p>
+        Расскажи, что хочешь выразить. После подключения формы мастер сможет
+        уточнить детали и предложить следующий шаг.
+      </p>
+    </header>
+
+    <div class="contact__layout">
+      <div class="contact__aside">
+        <p class="contact__city">Omsk<br />Private studio</p>
+        <dl>
+          <div><dt>Формат</dt><dd>По предварительной записи</dd></div>
+          <div><dt>Ответ</dt><dd>Срок уточняется у мастера</dd></div>
+          <div><dt>Связь</dt><dd>Контакты будут добавлены</dd></div>
+        </dl>
+        <p class="contact__concept">
+          Демонстрационный проект · не клиентская работа
+        </p>
+      </div>
+
+      <form class="contact-form" data-demo-form>
+        <div class="form-field">
+          <label for="name">Как тебя зовут?</label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            autocomplete="name"
+            required
+          />
+        </div>
+
+        <div class="form-field">
+          <label for="contact-method">Телефон или ник в Telegram</label>
+          <input
+            id="contact-method"
+            name="contact"
+            type="text"
+            autocomplete="tel"
+            required
+          />
+        </div>
+
+        <div class="form-field form-field--wide">
+          <label for="idea">Расскажи об идее</label>
+          <textarea id="idea" name="idea" rows="4" required></textarea>
+        </div>
+
+        <div class="form-field">
+          <label for="placement">Размер и место нанесения</label>
+          <input id="placement" name="placement" type="text" />
+        </div>
+
+        <div class="form-field">
+          <label for="reference">Прикрепить референс</label>
+          <input
+            id="reference"
+            name="reference"
+            type="file"
+            accept="image/png,image/jpeg,image/webp"
+          />
+        </div>
+
+        <label class="form-consent">
+          <input name="consent" type="checkbox" required />
+          <span
+            >Соглашаюсь на обработку данных из формы для ответа на заявку.</span
+          >
+        </label>
+        <p class="form-policy">
+          Подробнее об обработке данных — в <a href="/privacy/"
+            >политике конфиденциальности</a
+          >.
+        </p>
+
+        <div class="contact-form__footer">
+          <button class="button" type="submit">Отправить идею</button>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-demo-form]');
+  const status = form?.querySelector<HTMLElement>('.form-status');
+
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    if (status) {
+      status.textContent =
+        'Это демонстрационная форма. Перед запуском подключим отправку заявок мастеру.';
+    }
+  });
+</script>
+
+<style>
+  .contact {
+    position: relative;
+    padding-block: clamp(6rem, 12vw, 12rem);
+    overflow: clip;
+    background: var(--color-background);
+  }
+
+  .contact::before {
+    position: absolute;
+    content: '*';
+    inset: -0.2em -0.05em auto auto;
+    color: color-mix(in srgb, var(--color-accent) 15%, transparent);
+    font-family: var(--font-display);
+    font-size: clamp(18rem, 45vw, 48rem);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .contact__header,
+  .contact__layout {
+    position: relative;
+  }
+
+  .contact__header {
+    display: grid;
+    grid-template-columns: 8fr 4fr;
+    align-items: end;
+    gap: var(--space-8);
+    margin-bottom: clamp(5rem, 10vw, 10rem);
+  }
+
+  .contact__header .eyebrow {
+    grid-column: 1 / -1;
+  }
+
+  h2 {
+    font-size: clamp(2.8rem, 7vw, 7.2rem);
+    letter-spacing: -0.06em;
+    text-transform: uppercase;
+  }
+
+  h2 em {
+    color: var(--color-accent-soft);
+    font-family: Georgia, serif;
+    font-weight: 400;
+    text-transform: lowercase;
+  }
+
+  .contact__header > p:last-child {
+    max-width: 30rem;
+    color: var(--color-text-muted);
+  }
+
+  .contact__layout {
+    display: grid;
+    grid-template-columns: 4fr 8fr;
+    gap: clamp(3rem, 8vw, 9rem);
+  }
+
+  .contact__aside {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact__city {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  dl {
+    margin-block: var(--space-12);
+  }
+
+  dl div {
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+    gap: var(--space-4);
+    padding-block: var(--space-4);
+    border-top: 1px solid var(--color-border);
+  }
+
+  dl div:last-child {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  dt,
+  .contact__concept {
+    color: var(--color-text-muted);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  dd {
+    margin: 0;
+    font-size: 0.88rem;
+  }
+
+  .contact__concept {
+    margin-top: auto;
+  }
+
+  .contact-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8) var(--space-6);
+  }
+
+  .form-field {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .form-field--wide,
+  .form-consent,
+  .form-policy,
+  .contact-form__footer {
+    grid-column: 1 / -1;
+  }
+
+  label {
+    font-size: 0.7rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  input:not([type='checkbox']),
+  textarea {
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid var(--color-border);
+    border-radius: 0;
+    padding: var(--space-4) 0;
+    background: transparent;
+    color: var(--color-text);
+  }
+
+  input[type='file'] {
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  .form-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    color: var(--color-text-muted);
+    cursor: pointer;
+    line-height: 1.5;
+    text-transform: none;
+  }
+
+  .form-consent input {
+    flex: 0 0 auto;
+    width: 1.15rem;
+    height: 1.15rem;
+    margin-top: 0.12rem;
+    accent-color: var(--color-accent);
+  }
+
+  .form-policy {
+    color: var(--color-text-muted);
+    font-size: 0.78rem;
+  }
+
+  .form-policy a {
+    color: var(--color-accent-soft);
+    text-underline-offset: 0.2em;
+  }
+
+  .contact-form__footer {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    margin-top: var(--space-4);
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  .form-status {
+    max-width: 28rem;
+    color: var(--color-accent-soft);
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 52rem) {
+    .contact__header,
+    .contact__layout {
+      grid-template-columns: 1fr;
+    }
+
+    .contact__header > p:last-child {
+      max-width: 36rem;
+    }
+
+    .contact__concept {
+      margin-top: 0;
+    }
+  }
+
+  @media (max-width: 36rem) {
+    .contact-form {
+      grid-template-columns: 1fr;
+    }
+
+    .form-field--wide,
+    .form-consent,
+    .form-policy,
+    .contact-form__footer {
+      grid-column: auto;
+    }
+
+    .contact-form__footer {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+</style>

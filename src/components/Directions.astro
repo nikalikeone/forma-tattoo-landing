@@ -1,0 +1,149 @@
+---
+const directions = [
+  {
+    number: '01',
+    title: 'Индивидуальный эскиз',
+    description:
+      'Композиция под твою идею, выбранное место и особенности анатомии.',
+    tag: 'Custom design',
+  },
+  {
+    number: '02',
+    title: 'Новая татуировка',
+    description: 'Обсудим образ, масштаб, детали и подходящий формат работы.',
+    tag: 'New tattoo',
+  },
+  {
+    number: '03',
+    title: 'Доработка идеи',
+    description:
+      'Соберём разрозненные референсы в цельную визуальную концепцию.',
+    tag: 'Art direction',
+  },
+  {
+    number: '04',
+    title: 'Коррекция и перекрытие',
+    description:
+      'Возможность работы определяется после просмотра фотографии и консультации.',
+    tag: 'Cover-up',
+  },
+] as const;
+---
+
+<section class="directions" aria-labelledby="directions-title">
+  <div class="container">
+    <header class="directions__header">
+      <p class="eyebrow">03 / Directions</p>
+      <h2 id="directions-title">От первой мысли<br />до готовой работы</h2>
+    </header>
+
+    <ol class="directions__list">
+      {
+        directions.map((direction) => (
+          <li>
+            <span class="directions__number">{direction.number}</span>
+            <h3>{direction.title}</h3>
+            <p>{direction.description}</p>
+            <span class="directions__tag">{direction.tag}</span>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .directions {
+    padding-block: clamp(6rem, 11vw, 11rem);
+    background: var(--color-accent);
+    color: var(--color-text);
+  }
+
+  .directions__header {
+    display: grid;
+    grid-template-columns: minmax(10rem, 3fr) minmax(0, 9fr);
+    align-items: start;
+    gap: var(--space-8);
+    margin-bottom: clamp(4rem, 8vw, 8rem);
+  }
+
+  .directions .eyebrow {
+    color: var(--color-text);
+  }
+
+  h2 {
+    font-size: clamp(2.7rem, 7vw, 7rem);
+    letter-spacing: -0.06em;
+    text-transform: uppercase;
+  }
+
+  .directions__list {
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid
+      color-mix(in srgb, var(--color-text) 35%, transparent);
+    list-style: none;
+  }
+
+  .directions__list li {
+    display: grid;
+    grid-template-columns: 4rem minmax(13rem, 4fr) minmax(16rem, 5fr) minmax(
+        7rem,
+        2fr
+      );
+    align-items: center;
+    gap: var(--space-6);
+    padding-block: clamp(1.5rem, 3vw, 2.5rem);
+    border-top: 1px solid color-mix(in srgb, var(--color-text) 35%, transparent);
+  }
+
+  .directions__number,
+  .directions__tag {
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  h3 {
+    font-size: clamp(1.15rem, 2vw, 1.75rem);
+    text-transform: uppercase;
+  }
+
+  .directions__list p {
+    color: var(--color-text);
+  }
+
+  .directions__tag {
+    justify-self: end;
+    padding: 0.45rem 0.7rem;
+    border: 1px solid color-mix(in srgb, var(--color-text) 45%, transparent);
+    border-radius: 100vw;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 52rem) {
+    .directions__header {
+      grid-template-columns: 1fr;
+    }
+
+    .directions__list li {
+      grid-template-columns: 3rem 1fr auto;
+    }
+
+    .directions__list p {
+      grid-column: 2 / -1;
+    }
+  }
+
+  @media (max-width: 36rem) {
+    .directions__list li {
+      grid-template-columns: 2rem 1fr;
+    }
+
+    .directions__list p,
+    .directions__tag {
+      grid-column: 2;
+      justify-self: start;
+    }
+  }
+</style>

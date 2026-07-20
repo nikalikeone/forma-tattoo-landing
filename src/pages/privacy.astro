@@ -1,0 +1,138 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Политика обработки персональных данных | FORMA"
+  description="Демонстрационный шаблон политики обработки персональных данных сайта FORMA."
+  noindex
+>
+  <main id="main-content" class="policy">
+    <div class="policy__inner container">
+      <a class="policy__back" href="/">← Вернуться на сайт</a>
+      <p class="eyebrow">Legal / Draft</p>
+      <h1>Политика обработки персональных данных</h1>
+
+      <aside>
+        Это демонстрационный шаблон. До подключения формы владелец сайта должен
+        указать данные оператора, используемые сервисы, сроки хранения и порядок
+        отзыва согласия. Документ следует проверить с профильным специалистом.
+      </aside>
+
+      <section>
+        <h2>1. Оператор</h2>
+        <p>
+          Оператор: <mark>[ФИО или наименование владельца сайта]</mark>. Контакт
+          для обращений:
+          <mark>[электронная почта]</mark>.
+        </p>
+      </section>
+
+      <section>
+        <h2>2. Какие данные обрабатываются</h2>
+        <p>
+          Имя, указанный пользователем способ связи, описание идеи, сведения о
+          предполагаемом размере и месте нанесения, а также добровольно
+          приложенные изображения.
+        </p>
+      </section>
+
+      <section>
+        <h2>3. Цель обработки</h2>
+        <p>
+          Ответ на обращение пользователя, обсуждение услуги и организация
+          предварительной консультации.
+        </p>
+      </section>
+
+      <section>
+        <h2>4. Основание и действия с данными</h2>
+        <p>
+          Основанием является согласие пользователя. Возможные действия:
+          получение, запись, систематизация, хранение, использование для ответа
+          на заявку и удаление.
+        </p>
+      </section>
+
+      <section>
+        <h2>5. Срок хранения и отзыв согласия</h2>
+        <p>
+          Срок: <mark>[указать реальный срок]</mark>. Отозвать согласие можно,
+          направив обращение на адрес <mark>[электронная почта]</mark>.
+        </p>
+      </section>
+
+      <section>
+        <h2>6. Сторонние сервисы</h2>
+        <p>
+          До запуска необходимо перечислить хостинг, обработчик формы, аналитику
+          и другие сервисы, которые получают доступ к данным.
+        </p>
+      </section>
+
+      <p class="policy__updated">Версия шаблона: 20 июля 2026 года.</p>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .policy {
+    min-height: 100svh;
+    padding-block: clamp(3rem, 8vw, 7rem);
+  }
+
+  .policy__inner {
+    max-width: 58rem;
+  }
+
+  .policy__back {
+    display: inline-block;
+    margin-bottom: var(--space-12);
+    color: var(--color-accent-soft);
+    text-underline-offset: 0.2em;
+  }
+
+  h1 {
+    margin-block: var(--space-6) var(--space-12);
+    font-size: clamp(2.4rem, 6vw, 5.5rem);
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+  }
+
+  aside {
+    margin-bottom: var(--space-12);
+    padding: var(--space-6);
+    border-inline-start: 0.2rem solid var(--color-accent);
+    background: var(--color-surface);
+    color: var(--color-text-muted);
+  }
+
+  section {
+    padding-block: var(--space-8);
+    border-top: 1px solid var(--color-border);
+  }
+
+  h2 {
+    margin-bottom: var(--space-4);
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    text-transform: uppercase;
+  }
+
+  section p {
+    color: var(--color-text-muted);
+  }
+
+  mark {
+    background: color-mix(in srgb, var(--color-accent) 20%, transparent);
+    color: var(--color-accent-soft);
+  }
+
+  .policy__updated {
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+</style>

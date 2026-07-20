@@ -1,0 +1,237 @@
+---
+const safetyTopics = [
+  {
+    number: '01',
+    title: 'Подготовка',
+    description:
+      'До записи клиент получает информацию о подготовке и может задать вопросы.',
+  },
+  {
+    number: '02',
+    title: 'Процесс',
+    description:
+      'Условия проведения сеанса и используемые материалы заранее проговариваются.',
+  },
+  {
+    number: '03',
+    title: 'Уход',
+    description:
+      'После сеанса предоставляются рекомендации и способ связи с мастером.',
+  },
+] as const;
+---
+
+<section class="safety" aria-labelledby="safety-title">
+  <div class="safety__inner container">
+    <div class="safety__title">
+      <p class="eyebrow">05 / Safety</p>
+      <h2 id="safety-title">
+        Искусство<br />требует<br /><em>ответственности</em>
+      </h2>
+    </div>
+
+    <div class="safety__content">
+      <p class="safety__lead">
+        Комфорт и безопасность — часть процесса, а не формальность в конце
+        страницы.
+      </p>
+
+      <ul>
+        {
+          safetyTopics.map((topic) => (
+            <li>
+              <span>{topic.number}</span>
+              <div>
+                <>
+                  <h3>{topic.title}</h3>
+                  <p>{topic.description}</p>
+                </>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+
+      <aside>
+        <strong>Перед реальным запуском</strong>
+        <p>
+          Мастер должен подтвердить сведения об одноразовых материалах,
+          обработке рабочего места, оборудовании и пигментах. Непроверенные
+          утверждения публиковать нельзя.
+        </p>
+      </aside>
+    </div>
+
+    <div class="safety__graphic" aria-hidden="true">
+      <span class="safety__circle"></span>
+      <span class="safety__cross safety__cross--one">＋</span>
+      <span class="safety__cross safety__cross--two">＋</span>
+      <span class="safety__code">SAFE / 05</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .safety {
+    position: relative;
+    padding-block: clamp(6rem, 11vw, 11rem);
+    overflow: clip;
+    background: var(--color-surface);
+  }
+
+  .safety__inner {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(18rem, 5fr);
+    gap: clamp(3rem, 8vw, 9rem);
+  }
+
+  .safety__title,
+  .safety__content {
+    position: relative;
+    z-index: 1;
+  }
+
+  h2 {
+    margin-top: var(--space-6);
+    font-size: clamp(2.7rem, 6.5vw, 6.8rem);
+    letter-spacing: -0.06em;
+    text-transform: uppercase;
+  }
+
+  h2 em {
+    color: var(--color-accent-soft);
+    font-family: Georgia, serif;
+    font-weight: 400;
+    text-transform: lowercase;
+  }
+
+  .safety__lead {
+    max-width: 30rem;
+    font-size: clamp(1.25rem, 2.3vw, 2rem);
+    line-height: 1.35;
+  }
+
+  ul {
+    margin: var(--space-12) 0 0;
+    padding: 0;
+    border-bottom: 1px solid var(--color-border);
+    list-style: none;
+  }
+
+  li {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: var(--space-4);
+    padding-block: var(--space-6);
+    border-top: 1px solid var(--color-border);
+  }
+
+  li > span {
+    color: var(--color-accent-soft);
+    font-size: 0.7rem;
+  }
+
+  h3 {
+    margin-bottom: var(--space-2);
+    font-size: 1rem;
+    text-transform: uppercase;
+  }
+
+  li p,
+  aside p {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+  }
+
+  aside {
+    margin-top: var(--space-8);
+    padding: var(--space-6);
+    border-inline-start: 0.2rem solid var(--color-accent);
+    background: var(--color-background);
+  }
+
+  aside strong {
+    display: block;
+    margin-bottom: var(--space-2);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .safety__graphic {
+    position: absolute;
+    width: min(40vw, 36rem);
+    aspect-ratio: 1;
+    inset: 50% auto auto -12%;
+    opacity: 0.34;
+    transform: translateY(-28%);
+  }
+
+  .safety__circle {
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--color-accent-soft);
+    border-radius: 50%;
+  }
+
+  .safety__circle::before,
+  .safety__circle::after {
+    position: absolute;
+    content: '';
+    background: var(--color-accent-soft);
+  }
+
+  .safety__circle::before {
+    width: 1px;
+    height: 120%;
+    inset: -10% auto auto 50%;
+  }
+
+  .safety__circle::after {
+    width: 120%;
+    height: 1px;
+    inset: 50% auto auto -10%;
+  }
+
+  .safety__cross,
+  .safety__code {
+    position: absolute;
+    color: var(--color-accent-soft);
+    font-family: var(--font-display);
+  }
+
+  .safety__cross {
+    font-size: 2rem;
+  }
+
+  .safety__cross--one {
+    inset: 12% auto auto 78%;
+  }
+
+  .safety__cross--two {
+    inset: auto auto 8% 15%;
+  }
+
+  .safety__code {
+    inset: 48% auto auto 40%;
+    font-size: 0.7rem;
+  }
+
+  @media (max-width: 52rem) {
+    .safety__inner {
+      grid-template-columns: 1fr;
+    }
+
+    .safety__content {
+      max-width: 40rem;
+      margin-inline-start: auto;
+    }
+
+    .safety__graphic {
+      width: 70vw;
+      inset-block-start: 10%;
+      transform: none;
+    }
+  }
+</style>

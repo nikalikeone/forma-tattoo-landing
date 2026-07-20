@@ -1,0 +1,251 @@
+---
+import { Image } from 'astro:assets';
+import heroImage from '../assets/images/hero-tattoo-artist.png';
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero__background" aria-hidden="true"></div>
+
+  <div class="hero__inner container">
+    <div class="hero__content">
+      <p class="eyebrow">Private tattoo artist · Omsk</p>
+      <h1 id="hero-title">
+        <span>Твоя идея.</span>
+        <span>Твоя <em>форма.</em></span>
+        <span>Твоя история.</span>
+      </h1>
+      <p class="hero__description">
+        Авторские татуировки в Омске. Индивидуальные эскизы, внимательная
+        консультация и работа с твоей идеей.
+      </p>
+      <div class="hero__actions">
+        <a class="button" href="#contact">Обсудить идею</a>
+        <a class="text-link" href="#works"
+          >Смотреть работы <span aria-hidden="true">↓</span></a
+        >
+      </div>
+    </div>
+
+    <figure class="hero__visual">
+      <div class="hero__image-frame">
+        <Image
+          src={heroImage}
+          alt="Тату-мастер работает над абстрактной татуировкой"
+          widths={[480, 720, 960]}
+          sizes="(max-width: 720px) 92vw, 44vw"
+          loading="eager"
+          fetchpriority="high"
+          quality={84}
+        />
+      </div>
+      <figcaption>Concept visual · not client work</figcaption>
+      <span class="hero__marker" aria-hidden="true">F—01</span>
+    </figure>
+
+    <p class="hero__availability">
+      <span aria-hidden="true"></span>
+      Запись на консультацию
+    </p>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    overflow: clip;
+    background: var(--color-background);
+  }
+
+  .hero__background {
+    position: absolute;
+    inset: 0;
+    opacity: 0.25;
+    background-image: linear-gradient(
+      to right,
+      var(--color-border) 1px,
+      transparent 1px
+    );
+    background-size: calc((100% - (2 * var(--page-padding))) / 12) 100%;
+    mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      black 18%,
+      black 82%,
+      transparent
+    );
+  }
+
+  .hero__inner {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(18rem, 5fr);
+    align-items: center;
+    min-height: 100svh;
+    gap: clamp(2rem, 5vw, 6rem);
+    padding-block: 9rem 4rem;
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 2;
+  }
+
+  h1 {
+    margin-block: var(--space-6) var(--space-8);
+    font-size: clamp(3rem, 6.7vw, 7.7rem);
+    letter-spacing: -0.06em;
+    text-transform: uppercase;
+  }
+
+  h1 span {
+    display: block;
+    white-space: nowrap;
+  }
+
+  h1 em {
+    color: var(--color-accent-soft);
+    font-family: Georgia, serif;
+    font-weight: 400;
+    text-transform: lowercase;
+  }
+
+  .hero__description {
+    max-width: 35rem;
+    color: var(--color-text-muted);
+    font-size: clamp(1rem, 1.4vw, 1.2rem);
+  }
+
+  .hero__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+    margin-top: var(--space-8);
+  }
+
+  .text-link {
+    display: inline-flex;
+    gap: var(--space-2);
+    align-items: center;
+    color: var(--color-text);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .text-link span {
+    color: var(--color-accent-soft);
+    font-size: 1.2rem;
+  }
+
+  .hero__visual {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+  }
+
+  .hero__image-frame {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    clip-path: polygon(7% 0, 100% 0, 100% 93%, 88% 100%, 0 100%, 0 8%);
+  }
+
+  .hero__image-frame::after {
+    position: absolute;
+    content: '';
+    inset: 0;
+    background: linear-gradient(
+      145deg,
+      transparent 55%,
+      color-mix(in srgb, var(--color-accent) 35%, transparent)
+    );
+    pointer-events: none;
+  }
+
+  .hero__image-frame :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.65) contrast(1.08);
+  }
+
+  figcaption {
+    margin-top: var(--space-2);
+    color: var(--color-text-muted);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .hero__marker {
+    position: absolute;
+    inset: auto -1rem 12% auto;
+    display: grid;
+    width: 4rem;
+    aspect-ratio: 1;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: var(--color-text);
+    font-size: 0.7rem;
+    transform: rotate(12deg);
+  }
+
+  .hero__availability {
+    position: absolute;
+    inset: auto auto var(--space-8) var(--page-padding);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-text-muted);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .hero__availability span {
+    width: 0.5rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--color-accent-soft);
+  }
+
+  @media (max-width: 52rem) {
+    .hero__inner {
+      grid-template-columns: 1fr;
+      align-content: start;
+      padding-block: 8rem 6rem;
+    }
+
+    h1 {
+      font-size: clamp(2.65rem, 13vw, 5rem);
+    }
+
+    .hero__visual {
+      width: min(88%, 30rem);
+      margin-inline-start: auto;
+    }
+
+    .hero__availability {
+      inset-block-end: var(--space-6);
+    }
+  }
+
+  @media (max-width: 32rem) {
+    h1 span {
+      white-space: normal;
+    }
+
+    .hero__actions {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .hero__marker {
+      inset-inline-end: -0.5rem;
+    }
+  }
+</style>
