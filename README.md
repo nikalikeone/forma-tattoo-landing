@@ -113,9 +113,10 @@ npm run validate
 
 ```env
 PUBLIC_SITE_URL=https://example.com
+PUBLIC_BASE_PATH=/
 ```
 
-После этого сборка добавит canonical URL, адрес сайта в Open Graph, а также ссылку на `sitemap.xml` в `robots.txt`.
+`PUBLIC_BASE_PATH` нужен, если сайт публикуется не в корне домена, например на GitHub Pages. После настройки сборка добавит canonical URL, адрес сайта в Open Graph, а также ссылку на `sitemap.xml` в `robots.txt`.
 
 ## Что необходимо заменить перед реальным запуском
 

@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const homeUrl = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout
@@ -9,7 +11,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 >
   <main id="main-content" class="policy">
     <div class="policy__inner container">
-      <a class="policy__back" href="/">← Вернуться на сайт</a>
+      <a class="policy__back" href={homeUrl}>← Вернуться на сайт</a>
       <p class="eyebrow">Legal / Draft</p>
       <h1>Политика обработки персональных данных</h1>
 

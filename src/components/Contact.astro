@@ -1,3 +1,7 @@
+---
+const privacyUrl = `${import.meta.env.BASE_URL}privacy/`;
+---
+
 <section class="contact" id="contact" aria-labelledby="contact-title">
   <div class="container">
     <header class="contact__header">
@@ -74,7 +78,7 @@
           >
         </label>
         <p class="form-policy">
-          Подробнее об обработке данных — в <a href="/privacy/"
+          Подробнее об обработке данных — в <a href={privacyUrl}
             >политике конфиденциальности</a
           >.
         </p>

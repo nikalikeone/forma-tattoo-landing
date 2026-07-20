@@ -1,3 +1,7 @@
+---
+const privacyUrl = `${import.meta.env.BASE_URL}privacy/`;
+---
+
 <footer class="footer">
   <div class="footer__inner container">
     <a
@@ -29,7 +33,7 @@
 
     <div class="footer__legal">
       <span>© 2026 FORMA* · Portfolio concept</span>
-      <a href="/privacy/">Политика конфиденциальности</a>
+      <a href={privacyUrl}>Политика конфиденциальности</a>
       <span>GitHub проекта · после публикации</span>
     </div>
   </div>
