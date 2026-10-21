@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nikalikeone.github.io/forma-tattoo-landing/sitemap.xml
